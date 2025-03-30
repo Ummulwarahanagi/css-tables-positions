@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Positioning and Layout</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            max-height: fit-content;
+        }
+
+        /* Sticky Header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            max-width: 100%;
+            margin-left: 240px;
+            z-index: 10; /* Make sure it stays on top */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            z-index: 5; /* Sidebar will be behind the header */
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        /* Main Content */
+        .content {
+            margin-left: 220px; /* Adjust to accommodate the sidebar */
+            padding: 20px;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            z-index: 1; /* Footer will be behind the content */
+        }
+
+        /* Relative Positioning */
+        .relative {
+            position: relative;
+            top: 20px; /* Moves 20px down */
+            left: 30px; /* Moves 30px right */
+            background-color: lightcoral;
+            padding: 10px;
+        }
+
+        /* Absolute Positioning */
+        .parent {
+            position: relative;
+            background-color: lightblue;
+            padding: 20px;
+            margin: 30px 0;
+            height: 200px;
+        }
+
+        .absolute {
+            position: absolute;
+            top: 50px; /* Moves 50px down from the top of the parent */
+            left: 50px; /* Moves 50px right from the left of the parent */
+            background-color: coral;
+            padding: 10px;
+        }
+
+        /* Popup/Modal */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);/*center the model*/
+            background-color: white;
+            padding: 30px;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .popup.show {
+            display: block; /* Show the popup */
+        }
+
+        .popup button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #555;
+        }
+
+        /* Button to trigger popup */
+        .show-popup-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            margin-bottom: 50px;
+        }
+
+        .show-popup-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <h1>Sticky Header</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Sidebar</h2>
+        <p>This sidebar stays fixed on the left.</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Main Content</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nihil odio tempore explicabo sunt, delectus porro. Rem laudantium consectetur voluptate magnam! Porro suscipit voluptas saepe dignissimos quo, quis eius perferendis.
+        Quasi, amet illum. Laudantium, aut beatae nam nemo, voluptas ad quae ipsa voluptatibus expedita, culpa praesentium corporis dicta non in eos dolor quasi nobis! Voluptate, beatae porro. Hic, sint earum.
+        Repellendus distinctio possimus veniam nulla illo, saepe deleniti recusandae autem porro excepturi quibusdam expedita exercitationem incidunt culpa, eum pariatur ut nobis ad sed! Sint facere quod sed iusto sunt ullam?
+        Dolore saepe maxime sequi doloremque facilis fugit error, voluptatibus eveniet sit quae veniam repellat laboriosam, vel temporibus voluptates, in iste! Dolorem quod quae excepturi itaque odio vel, similique consectetur vero?
+        Dignissimos illum officiis veniam nemo aspernatur porro deleniti nam, odio, impedit natus, esse architecto. Quaerat dolore, provident alias consequuntur laudantium iste, nihil delectus hic nam facere ea facilis excepturi quibusdam!<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, praesentium? Aliquid aperiam laboriosam, omnis reiciendis libero ullam ipsa maxime itaque magni minus nisi quidem dicta a, velit repellat ea quasi!
+        Cum possimus assumenda, velit nihil odit fugiat rem atque repellendus doloremque dolore ipsa, deserunt optio aspernatur suscipit pariatur. Possimus enim corrupti facilis quisquam commodi eaque at quaerat aliquam animi quidem!
+        Ullam sunt distinctio autem, amet quod repellat. Maiores tenetur magni sit eaque iure suscipit esse odit dolorum nostrum quos dolorem voluptate et, delectus voluptatibus vel nobis iste quisquam sunt blanditiis.
+        Magnam, quod, atque quo tempora perspiciatis quos, doloremque unde odit ipsa rerum rem. Earum perspiciatis quaerat, tempore iusto, esse accusantium tempora, rerum magni sit reprehenderit consequatur quo libero animi et?
+        Doloribus aliquid quibusdam eaque, maiores qui, architecto numquam delectus inventore accusamus aspernatur laborum excepturi ab fugiat in eveniet dolores porro adipisci, quidem alias. Excepturi nesciunt laudantium dolores nulla quisquam minus!</p>
+        <p>Scroll down to see the sticky header and fixed footer.</p>
+        <p>Scroll down more to see the effect of relative and absolute positioning.</p>
+        
+        <!-- Relative Positioning -->
+        <div class="relative">
+            This element is positioned relative to its normal position.
+        </div>
+        
+        <!-- Absolute Positioning-->
+        <div class="parent">
+            <div class="absolute">
+                This element is absolutely positioned inside its parent container.
+            </div>
+        </div>
+
+        <button class="show-popup-btn" onclick="showPopup()">Click to Show Popup</button>
+
+        <!-- Popup Modal -->
+        <div class="popup" id="popup">
+            <h3>Popup Modal</h3>
+            <p>This is a centered popup modal.</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Sticky Footer</p>
+    </footer>
+
+    <script>
+        // Show the popup modal
+        function showPopup() {
+            document.getElementById("popup").classList.add("show");
+        }
+
+        // Close the popup modal
+        function closePopup() {
+            document.getElementById("popup").classList.remove("show");
+        }
+    </script>
+
+</body>
+</html>
